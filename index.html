@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <title>Four Corners</title>
     <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
 <h1>Four Corners</h1>
 
 <div id="dice">
-    <button id="dice-4"  onclick="roll(4)">D4</button>
-    <button id="dice-6"  onclick="roll(6)">D6</button>
-    <button id="dice-8"  onclick="roll(8)">D8</button>
-    <button id="dice-10" onclick="roll(10)">D10</button>
-    <button id="dice-12" onclick="roll(12)">D12</button>
+    <button id="dice-4"  class="dice"  onclick="roll(this,4)">D4</button>
+    <button id="dice-6"  class="dice"  onclick="roll(this,6)">D6</button>
+    <button id="dice-8"  class="dice"  onclick="roll(this,8)">D8</button>
+    <button id="dice-10" class="dice"  onclick="roll(this,10)">D10</button>
+    <button id="dice-12" class="dice"  onclick="roll(this,12)">D12</button>
+    <button id="reset"   onclick="reset()">Reset</button>
 </div>
 
 <div style="background-color: #96f1ee; border: black solid; height: 5em; width: 10em; padding: 1em; margin: 1em;">
     <p id="roll-result"></p>
-    <p id="board-result"></p>
+    <p id="house-banter"></p>
 </div>
 
 </body>

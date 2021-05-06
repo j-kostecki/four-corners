@@ -1,35 +1,69 @@
-var dice = [4,6,8,10,12]
+var squares;
 
-var squares = [1,0,1,0,-1,0,1,0,1,2,2,2];
+var playerCoins = 0;
+var houseCoins = 0;
 
-var boardresult;
+var result;
+var houseBanter;
 
 window.onload = function() {
-
+    reset()
 }
 
-function roll(dice) {
+function reset() {
+    $(".dice").attr("disabled", false);
+    playerCoins = 0;
+    houseCoins = 0;
+    squares = [0,1,0,1,0,-1,0,1,0,1];
+}
+function roll(elem, dice) {
+
+    elem.disabled = true;
 
     let roll = Math.ceil(Math.random() * dice);
-    document.getElementById("roll-result").innerText
-        = "You rolled a " + roll.toString() + "!";
-    let output;
-    boardresult = squares[Math.min(roll-1, 8)]
-    switch(boardresult)
+
+    document.getElementById("roll-result").innerText = "You rolled a " + roll.toString() + "!";
+
+    result = squares[Math.min(roll, 8)]
+    if (roll >= squares.length) {
+        result = 2;
+    }
+    else {
+        result = squares[Math.min(roll, 8)]
+    }
+    switch(result)
     {
         case -1:
-            output = "bad luck, friend...";
+            houseTakesCoin()
             break;
         case 0:
-            output = "roll again?"
+            playerPromptReRoll()
             break;
         case 1:
-            output = "take a coin"
+            playerTakesCoin(roll)
             break;
         case 2:
-            output = "take any coin!"
+            playerTakesAnyCoin()
             break;
     }
-    document.getElementById("board-result").innerText = output;
+    document.getElementById("house-banter").innerText = houseBanter;
+}
 
+function houseTakesCoin() {
+    houseBanter = "Bad luck, friend...";
+    houseCoins++;
+}
+
+function playerPromptReRoll() {
+    houseBanter = "Care to roll again?";
+}
+
+function playerTakesCoin(roll) {
+    squares[roll] = 0;
+    playerCoins++;
+    houseBanter = "Take a coin"
+}
+
+function playerTakesAnyCoin() {
+    houseBanter = "Take any coin you like"
 }
