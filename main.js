@@ -52,6 +52,7 @@ function roll(elem, dice) {
 function houseTakesCoin() {
     houseBanter = "Bad luck, friend...";
     houseCoins++;
+    document.getElementById('house-coins').innerText = houseCoins;
 }
 
 function playerPromptReRoll() {
@@ -61,9 +62,11 @@ function playerPromptReRoll() {
 function playerTakesCoin(roll) {
     squares[roll] = 0;
     playerCoins++;
+    document.getElementById('player-coins').innerText = playerCoins;
     houseBanter = "Take a coin"
 }
 
 function playerTakesAnyCoin() {
     houseBanter = "Take any coin you like"
+    document.getElementById('player-coins').innerText = playerCoins;
 }
